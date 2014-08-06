@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/adamvr/node-linkshare-lookup/issues"
   },
-  "homepage": "https://github.com/adamvr/node-linkshare-lookup"
+  "homepage": "https://github.com/adamvr/node-linkshare-lookup",
+  "dependencies": {
+    "superagent": "^0.18.2",
+    "underscore": "^1.6.0"
+  }
 }
