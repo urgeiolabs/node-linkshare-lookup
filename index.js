@@ -2,6 +2,7 @@
  * Module dependencies
  */
 var request = require('superagent')
+  , xml2js = require('xml2js')
   , _ = require('underscore');
 
 // API endpoint
@@ -22,6 +23,9 @@ Linkshare.prototype.advertiser = function (id) {
 };
 
 Linkshare.prototype.done = function (cb) {
+  // Ensure the callback only fires once
+  cb = _.once(cb);
+
   return request
     .get(endpoint)
     .query({token: this._id})
@@ -29,7 +33,9 @@ Linkshare.prototype.done = function (cb) {
     .query({mid: this._advertiser})
     .end(function (err, res) {
       if (err) return cb(err);
-      return cb(null, res.text);
+      xml2js.parseString(res.text, {trim: true}, function (err, res) {
+        cb(null, format(res.result.item));
+      });
     });
 };
 
