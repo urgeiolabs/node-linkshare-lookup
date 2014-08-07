@@ -37,6 +37,7 @@ linkshare({keywords: opts.keywords})
   .id(opts.id)
   .limit(opts.limit)
   .one(opts.one)
+  .page(opts.page)
   .done(function (err, res) {
     if (err) throw err;
     console.log(JSON.stringify(res));
