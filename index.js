@@ -44,10 +44,24 @@ Linkshare.prototype.done = function (cb) {
     .query({token: this._id})
     .query({keyword: this._keywords})
     .query({mid: this._advertiser})
+    .query({max: one ? 1 : limit})
+    .query({pagenumber: this._page})
     .end(function (err, res) {
+      // Catch http errors
       if (err) return cb(err);
+
       xml2js.parseString(res.text, {trim: true}, function (err, res) {
-        cb(null, format(res.result.item));
+        // Format results
+        var formatted = format(items);
+
+        // Limit results
+        if (one) {
+          formatted = _.first(formatted) || null;
+        } else if (limit) {
+          formatted = _.first(formatted, limit);
+        }
+
+        return cb(null, formatted);
       });
     });
 };
