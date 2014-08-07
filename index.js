@@ -32,6 +32,10 @@ Linkshare.prototype.one = function (one) {
   return this._one = one, this;
 };
 
+Linkshare.prototype.page = function (page) {
+  return this._page = page, this;
+};
+
 Linkshare.prototype.done = function (cb) {
   var one = this._one
     , limit = this._limit;
