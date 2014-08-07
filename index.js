@@ -32,3 +32,15 @@ Linkshare.prototype.done = function (cb) {
       return cb(null, res.text);
     });
 };
+
+var format = function (items) {
+  return items.map(function (i) {
+    return {
+      name: i.productname[0],
+      listPrice: i.price[0]['_'],
+      currency: i.price[0]['$']['currency'],
+      url: i.linkurl[0],
+      id: i.linkid[0]
+    }
+  });
+};
