@@ -51,6 +51,15 @@ Linkshare.prototype.done = function (cb) {
       if (err) return cb(err);
 
       xml2js.parseString(res.text, {trim: true}, function (err, res) {
+        // Catch parsing errors
+        if (err) return cb(err);
+
+        var errors = res.result.Errors
+          , items = res.result.item;
+
+        // Catch api errors
+        if (errors) return cb(new Error(formatError(errors)));
+
         // Format results
         var formatted = format(items);
 
@@ -76,4 +85,8 @@ var format = function (items) {
       id: i.linkid[0]
     }
   });
+};
+
+var formatError = function (error) {
+  return error[0].ErrorText;
 };
