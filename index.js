@@ -7,11 +7,9 @@ var request = require('superagent')
 // API endpoint
 var endpoint = 'http://productsearch.linksynergy.com/productsearch';
 
-module.exports = function (opts) {
-  return new Linkshare (opts);
-};
+var Linkshare = module.exports = function (opts) {
+  if (!(this instanceof Linkshare)) return new Linkshare (opts);
 
-var Linkshare = function (opts) {
   this._keywords = opts.keywords;
 };
 
