@@ -19,6 +19,10 @@ var opts = nomnom
     required: true,
     help: 'Keywords to search'
   })
+  .option('advertiser', {
+    abbr: 'a',
+    help: 'Limit to a single advertiser',
+  })
   .option('one', {
     abbr: '1',
     help: 'Limit to only one result',
@@ -40,6 +44,7 @@ linkshare({keywords: opts.keywords})
   .limit(opts.limit)
   .one(opts.one)
   .page(opts.page)
+  .advertiser(opts.advertiser)
   .done(function (err, res) {
     if (err) throw err;
     console.log(JSON.stringify(res));
