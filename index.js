@@ -22,7 +22,20 @@ Linkshare.prototype.advertiser = function (id) {
   return this._advertiser = id, this;
 };
 
+Linkshare.prototype.limit = function (limit) {
+  if (!limit) return this;
+  return this._limit = limit, this;
+};
+
+Linkshare.prototype.one = function (one) {
+  one = ('undefined' === typeof one) ? true : !!one;
+  return this._one = one, this;
+};
+
 Linkshare.prototype.done = function (cb) {
+  var one = this._one
+    , limit = this._limit;
+
   // Ensure the callback only fires once
   cb = _.once(cb);
 
