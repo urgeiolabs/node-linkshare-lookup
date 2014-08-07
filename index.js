@@ -64,7 +64,7 @@ Linkshare.prototype.done = function (cb) {
         if (err) return cb(err);
 
         var errors = res.result.Errors
-          , items = res.result.item;
+          , items = res.result.item || [];
 
         // Catch api errors
         if (errors) return cb(new Error(formatError(errors)));
