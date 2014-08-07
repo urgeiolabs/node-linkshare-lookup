@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/adamvr/node-linkshare-lookup",
   "dependencies": {
+    "nomnom": "^1.8.0",
     "superagent": "^0.18.2",
-    "underscore": "^1.6.0"
+    "underscore": "^1.6.0",
+    "xml2js": "^0.4.4"
   }
 }
