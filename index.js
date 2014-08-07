@@ -3,6 +3,7 @@
  */
 var request = require('superagent')
   , xml2js = require('xml2js')
+  , debug = require('debug')('linkshare-lookup')
   , _ = require('underscore');
 
 // API endpoint
@@ -15,24 +16,29 @@ var Linkshare = module.exports = function (opts) {
 };
 
 Linkshare.prototype.id = function (id) {
+  debug('set id %s', id);
   return this._id = id, this;
 };
 
 Linkshare.prototype.advertiser = function (id) {
+  debug('set advertiser id %s', id);
   return this._advertiser = id, this;
 };
 
 Linkshare.prototype.limit = function (limit) {
+  debug('set limit %d', limit);
   if (!limit) return this;
   return this._limit = limit, this;
 };
 
 Linkshare.prototype.one = function (one) {
+  debug('set one %d', one);
   one = ('undefined' === typeof one) ? true : !!one;
   return this._one = one, this;
 };
 
 Linkshare.prototype.page = function (page) {
+  debug('set page %d', page);
   return this._page = page, this;
 };
 
@@ -40,8 +46,7 @@ Linkshare.prototype.done = function (cb) {
   var one = this._one
     , limit = this._limit;
 
-  // Ensure the callback only fires once
-  cb = _.once(cb);
+  debug('running request');
 
   return request
     .get(endpoint)
