@@ -42,19 +42,30 @@ Linkshare.prototype.page = function (page) {
   return this._page = page, this;
 };
 
+Linkshare.prototype.extras = function(actions) {
+  debug('extra parameters to the request');
+  return this._extras = actions, this;
+};
+
 Linkshare.prototype.done = function (cb) {
   var one = this._one
     , limit = this._limit;
 
   debug('running request');
 
-  return request
+  var req = request
     .get(endpoint)
     .query({token: this._id})
     .query({keyword: this._keywords})
     .query({mid: this._advertiser})
     .query({max: one ? 1 : limit})
-    .query({pagenumber: this._page})
+    .query({pagenumber: this._page});
+
+  if(this._extras) {
+    this._extras(req);
+  }
+
+  return req
     .end(function (err, res) {
       // Catch http errors
       if (err) return cb(err);
