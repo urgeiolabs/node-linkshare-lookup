@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:adamvr/node-linkshare-lookup.git"
+    "url": "git@github.com:urgeiolabs/node-linkshare-lookup.git"
   },
   "keywords": [
     "linkshare",
@@ -17,12 +17,12 @@
   "author": "Adam Rudd",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/adamvr/node-linkshare-lookup/issues"
+    "url": "https://github.com/urgeiolabs/node-linkshare-lookup/issues"
   },
   "bin": {
     "linkshare-lookup": "./bin.js"
   },
-  "homepage": "https://github.com/adamvr/node-linkshare-lookup",
+  "homepage": "https://github.com/urgeiolabs/node-linkshare-lookup",
   "dependencies": {
     "debug": "^1.0.4",
     "nomnom": "^1.8.0",
