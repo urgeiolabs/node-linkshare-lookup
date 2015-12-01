@@ -37,6 +37,16 @@ Linkshare.prototype.one = function (one) {
   return this._one = one, this;
 };
 
+Linkshare.prototype.sort = function (sort) {
+  debug('set sort %d', sort);
+  return this._sort = sort, this;
+};
+
+Linkshare.prototype.sortType = function (sortType) {
+  debug('set sortType %d', sortType);
+  return this._sortType = sortType, this;
+};
+
 Linkshare.prototype.page = function (page) {
   debug('set page %d', page);
   return this._page = page, this;
@@ -54,6 +64,8 @@ Linkshare.prototype.done = function (cb) {
     .query({keyword: this._keywords})
     .query({mid: this._advertiser})
     .query({max: one ? 1 : limit})
+    .query({sort: this._sort})
+    .query({sorttype: this._sortType})
     .query({pagenumber: this._page})
     .end(function (err, res) {
       // Catch http errors
