@@ -37,6 +37,12 @@ Linkshare.prototype.one = function (one) {
   return this._one = one, this;
 };
 
+Linkshare.prototype.exact = function (exact) {
+  debug('set exact %d', exact);
+  exact = ('undefined' === typeof exact) ? true : !!exact;
+  return this._exact = exact, this;
+};
+
 Linkshare.prototype.sort = function (sort) {
   debug('set sort %d', sort);
   return this._sort = sort, this;
@@ -54,6 +60,7 @@ Linkshare.prototype.page = function (page) {
 
 Linkshare.prototype.done = function (cb) {
   var one = this._one
+    , exact = this._exact
     , limit = this._limit;
 
   debug('running request');
@@ -62,6 +69,7 @@ Linkshare.prototype.done = function (cb) {
     .get(endpoint)
     .query({token: this._id})
     .query({keyword: this._keywords})
+    .query({exact: exact ? this._keywords : ''})
     .query({mid: this._advertiser})
     .query({max: one ? 1 : limit})
     .query({sort: this._sort})

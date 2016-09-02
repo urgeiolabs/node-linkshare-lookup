@@ -29,6 +29,12 @@ var opts = nomnom
     flag: true,
     default: false
   })
+  .option('exact', {
+    abbr: 'e',
+    help: 'Result name has to include all keywords',
+    flag: true,
+    default: false
+  })
   .option('limit', {
     abbr: 'l',
     help: 'Limit number of results'
@@ -43,6 +49,7 @@ linkshare({keywords: opts.keywords})
   .id(opts.id)
   .limit(opts.limit)
   .one(opts.one)
+  .exact(opts.exact)
   .page(opts.page)
   .advertiser(opts.advertiser)
   .done(function (err, res) {

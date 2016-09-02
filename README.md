@@ -46,7 +46,7 @@ linkshare({keywords: 'test'})
   .done(function (err, result) { ... });
 ```
 
-Limit to only one result, a la mongodb findOne
+Limit to only one result, a la mongodb findOne:
 
 ```javascript
 var linkshare = require('linkshare-lookup');
@@ -54,6 +54,17 @@ var linkshare = require('linkshare-lookup');
 linkshare({keywords: 'test'})
   .id('id')
   .one()
+  .done(function (err, result) { ... });
+```
+
+Result has to include all keywords:
+
+```javascript
+var linkshare = require('linkshare-lookup');
+
+linkshare({keywords: 'test'})
+  .id('id')
+  .exact()
   .done(function (err, result) { ... });
 ```
 
