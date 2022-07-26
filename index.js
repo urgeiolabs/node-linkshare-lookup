@@ -83,6 +83,8 @@ Linkshare.prototype.done = function (cb) {
         // Catch parsing errors
         if (err) return cb(err);
 
+        if (!res || !res.result) return cb(null, null)
+
         var errors = res.result.Errors
           , items = res.result.item || [];
 
